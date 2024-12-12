@@ -27,6 +27,6 @@ namespace To_Do_List_App.Models
 
         public bool Overdue => StatusId == "open" && DueDate < DateTime.Today;
 
-]
+
     }
 }
