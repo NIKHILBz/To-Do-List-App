@@ -25,5 +25,10 @@
             {"past", "Past"},
             {"today", "Today" }
         };
+
+        public bool IsPast => Due.ToLower() == "past";
+        public bool IsFuture => Due.ToLower() == "today";
+        public bool IsToday => Due.ToLower() == "future";
+
     }
 }
