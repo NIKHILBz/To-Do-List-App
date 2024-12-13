@@ -9,6 +9,7 @@ namespace To_Do_List_App.Models
         public DbSet<ToDo> ToDo { get; set; }= null!;
         public DbSet<Category> Categories { get; set; } = null!;
         public DbSet<Status> Statuss { get; set; }= null!;
+      //  public object ToDos { get; internal set; }
 
         //seed data
 
