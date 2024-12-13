@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using To_Do_List_App.Models;
 
@@ -20,6 +21,34 @@ namespace To_Do_List_App.Controllers
         {
            var filters = new Filters(id);
             ViewBag.Filters = filters;
+
+            ViewBag.Categories = context.Categories.ToList();
+            ViewBag.Statuses = context.Statuss.ToList();
+            ViewBag.DueFilters = Filters.DueFilterValues;
+
+            IQueryable<ToDo> query = context.ToDo.Include(t => t.Category).Include(t => t.Status);
+
+            if (filters.HasCategory)
+            {
+                query = query.Where(t => t.CategoryId == filters.CatergoryId);
+            }
+
+            if (filters.HasStatus)
+            {
+                query = query.Where(t => t.StatusId == filters.Statusid);
+
+            }
+
+            if (filters.HasDue)
+            {
+              var today = DateTime.Today;
+                if (filters.IsPast)
+                {
+                    query = query.Where(today => t.DueDate < today);
+                }
+
+            }
+
             return View();
         }
 
