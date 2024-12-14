@@ -21,7 +21,7 @@ namespace To_Do_List_App.Models
                   new Category { CategoryId = "home", Name = "Home" },
                   new Category { CategoryId = "ex", Name = "Shopping" },
                   new Category { CategoryId = "shop", Name = "Work" },
-                  new Category { CategoryId = "call", Name = "Contact" } 
+                  new Category { CategoryId = "call", Name = "Contact" }
                 );
 
             modelBuilder.Entity<Status>().HasData(
