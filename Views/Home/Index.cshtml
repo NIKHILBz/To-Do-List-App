@@ -9,6 +9,7 @@
                         asp-items="@(new SelectList(ViewBag.Categories, "CategoryId", "Name", ViewBag.Filters.CategoryId))">
                     <option value="all">All</option>
                 </select>
+
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Due:</label>
@@ -17,6 +18,8 @@
                     <option value="all">All</option>
                 </select>
                 </div>
+
+
             </form>
         </div>
         <div class="col-mg-10">
