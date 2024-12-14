@@ -17,10 +17,10 @@ namespace To_Do_List_App.Models
         {
             // base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Category>().HasData(
-                new Category { CategoryId = "work", Name = "Work" },
+                  new Category { CategoryId = "work", Name = "Work" },
                   new Category { CategoryId = "home", Name = "Home" },
-                  new Category { CategoryId = "ex", Name = "Shopping" },
-                  new Category { CategoryId = "shop", Name = "Work" },
+                  new Category { CategoryId = "shop", Name = "Shopping" },
+                  new Category { CategoryId = "ex", Name = "Work" },
                   new Category { CategoryId = "call", Name = "Contact" }
                 );
 
