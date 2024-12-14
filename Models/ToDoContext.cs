@@ -17,11 +17,12 @@ namespace To_Do_List_App.Models
         {
             // base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Category>().HasData(
-                  new Category { CategoryId = "work", Name = "Work" },
+                  new Category { CategoryId = "call", Name = "Contact" },
+                   new Category { CategoryId = "exercise", Name = "Exercise" },
                   new Category { CategoryId = "home", Name = "Home" },
                   new Category { CategoryId = "shop", Name = "Shopping" },
-                  new Category { CategoryId = "ex", Name = "Work" },
-                  new Category { CategoryId = "call", Name = "Contact" }
+                   new Category { CategoryId = "work", Name = "Work" }
+                 
                 );
 
             modelBuilder.Entity<Status>().HasData(
