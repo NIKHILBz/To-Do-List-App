@@ -35,7 +35,7 @@ namespace To_Do_List_App.Controllers
 
             if (filters.HasStatus)
             {
-                query = query.Where(t => t.StatusId == filters.Statusid);
+                query = query.Where(t => t.StatusId == filters.StatusId);
 
             }
 
