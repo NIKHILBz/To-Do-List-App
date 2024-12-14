@@ -31,28 +31,43 @@
 
             </form>
         </div>
-        <div class="col-mg-10">
+        <div class="col-md-10">
             <form asp-action="MarkComplete" method="post" asp-route-id="@ViewBag.Filters.Filterstring">
+               <table class="table table-bordered table-striped mt-2">
                 <thead>
-                    <th>Description</th>
-                    <th>Category</th>
-                    <th>Due Date</th>
-                    <th>Status</th>
-                    <th class="w-25"></th>
-                </thead>
-                <tbody>
-                    @foreach(ToDo task in Model)
-                {
-                    string overdue = task.Overdue ? "bg-warning" : "";
                     <tr>
-                        <td>@task.Description</td>
-                        <td>@task.Category.Name</td>
-                        <td class="@overdue"></td>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                        <th class="w-25"></th>
                     </tr>
-                }
-            </tbody>
+                </thead>
 
+                    <tbody>
+                        @foreach(ToDo task in Model)
+                        {
+                            string overdue = task.Overdue ? "bg-warning" : "";
+                            <tr>
+                                <td>@task.Description</td>
+                                <td>@task.Category.Name</td>
+                                <td class="@overdue"></td>
+                                <td>
+                                    @if(task.StatusId == "open")
+                                    {
+                                        <button type="submit" class="btn btn-primary btn-sm" 
+                                        name="@nameof(ToDo.Id)" value="@task.Id">Mark Completed</button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </form>
 
+        <form asp-action="DeleteComplete" method="post" asp-route-id="@ViewBag.Filters.Filterstring">
+            <a asp-action="Add" class="btn btn-primary">Add new task</a>
+            <button type="submit" class="btn btn-primary">Delete completed tasks</button>
+        </form>
         </div>
     </div>
