@@ -32,7 +32,7 @@
             </form>
         </div>
         <div class="col-mg-10">
-            <form asp-action="MarkComplete" method="post" asp-route-id="@ViewBag.Filters.FilterString">
+            <form asp-action="MarkComplete" method="post" asp-route-id="@ViewBag.Filters.Filterstring">
                 <thead>
                     <th>Description</th>
                     <th>Category</th>
@@ -40,7 +40,17 @@
                     <th>Status</th>
                     <th class="w-25"></th>
                 </thead>
-
+                <tbody>
+                    @foreach(ToDo task in Model)
+                {
+                    string overdue = task.Overdue ? "bg-warning" : "";
+                    <tr>
+                        <td>@task.Description</td>
+                        <td>@task.Category.Name</td>
+                        <td class="@overdue"></td>
+                    </tr>
+                }
+            </tbody>
 
             </form>
 
