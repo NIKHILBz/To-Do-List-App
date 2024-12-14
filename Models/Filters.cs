@@ -7,7 +7,7 @@
             string[] filter = Filterstring.Split('-');
              CategoryId = filter[0];
             Due = filter[1];
-            Statusid = filter[2];
+            StatusId = filter[2];
         }
 
         public string Filterstring { get; }
@@ -15,10 +15,10 @@
 
         public string Due { get; }
 
-        public string Statusid { get; }
+        public string StatusId { get; }
         public bool HasCategory => CategoryId.ToLower() != "all";
         public bool HasDue => Due.ToLower() != "all";
-        public bool HasStatus => Statusid.ToLower() != "all";
+        public bool HasStatus => StatusId.ToLower() != "all";
         public static Dictionary<string, string> DueFilterValues =>new Dictionary<string, string> 
         {
             {"future", "Future"},
