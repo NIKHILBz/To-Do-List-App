@@ -30,7 +30,7 @@ namespace To_Do_List_App.Controllers
 
             if (filters.HasCategory)
             {
-                query = query.Where(t => t.CategoryId == filters.CatergoryId);
+                query = query.Where(t => t.CategoryId == filters.CategoryId);
             }
 
             if (filters.HasStatus)
