@@ -26,10 +26,23 @@
                     <option value="all">All</option>
                 </select>
             </div>
+            <button type="submit" class="btn btn-primary">Filter</button>
+            <a asp-action="Index" asp-route-id="" class="btn btn-primary">Clear</a>
 
             </form>
         </div>
         <div class="col-mg-10">
+            <form asp-action="MarkComplete" method="post" asp-route-id="@ViewBag.Filters.FilterString">
+                <thead>
+                    <th>Description</th>
+                <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </thead>
+            </form>
 
         </div>
     </div>
