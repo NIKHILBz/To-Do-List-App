@@ -6,7 +6,7 @@
                 <div class="mb-3">
                     <label class="form-label">Category</label>
                     <select name="filter" class="form-select"
-                        asp-items="@(new SelectList(ViewBag.Categories, "CategoryID", "Name", ViewBag.Filters.CategoryID))">
+                        asp-items="@(new SelectList(ViewBag.Categories, "CategoryId", "Name", ViewBag.Filters.CategoryId))">
                     <option value="all">All</option>
                 </select>
                 </div>

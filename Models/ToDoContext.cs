@@ -20,7 +20,7 @@ namespace To_Do_List_App.Models
                 new Category { CategoryId = "work", Name = "Work" },
                   new Category { CategoryId = "home", Name = "Home" },
                   new Category { CategoryId = "ex", Name = "Shopping" },
-                  new Category { CategoryId = "shop", Name = "Work" },
+                  new Category { CategoryId = "shop", Name = "Workk" },
                   new Category { CategoryId = "call", Name = "Contact" }
                 );
 
