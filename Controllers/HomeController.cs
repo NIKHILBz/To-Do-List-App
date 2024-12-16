@@ -117,7 +117,5 @@ namespace To_Do_List_App.Controllers
             context.SaveChanges();
             return RedirectToAction("Index", new {ID= id});
         }
-
-
     }
 }
