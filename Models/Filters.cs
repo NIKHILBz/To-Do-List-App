@@ -13,7 +13,7 @@
         public string Filterstring { get; }
         public string CategoryId { get; }
 
-        public string Due { get; }
+        public string Due { get; } //date
 
         public string StatusId { get; }
         public bool HasCategory => CategoryId.ToLower() != "all";

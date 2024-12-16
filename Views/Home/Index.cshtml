@@ -36,13 +36,46 @@
                <table class="table table-bordered table-striped mt-2">
                 <thead>
                     <tr>
-                        <th>Description</th>
-                        <th>Category</th>
-                        <th>Due Date</th>
-                        <th>Status</th>
+                        <th>
+                            <a asp-action="Index" asp-route-sortBy="Description" asp-route-sortDirection="@(ViewBag.SortDirection == "asc" ? "desc" : "asc")">
+                                Description
+                                @if (ViewBag.CurrentSortBy == "Description")
+                                {
+                                    <span>@(ViewBag.SortDirection == "asc" ? "↑" : "↓")</span>
+                                }
+                            </a>
+                        </th>
+                        <th>
+                            <a asp-action="Index" asp-route-sortBy="Category" asp-route-sortDirection="@(ViewBag.SortDirection == "asc" ? "desc" : "asc")">
+                                Category
+                                @if (ViewBag.CurrentSortBy == "Category")
+                                {
+                                    <span>@(ViewBag.SortDirection == "asc" ? "↑" : "↓")</span>
+                                }
+                            </a>
+                        </th>
+                        <th>
+                            <a asp-action="Index" asp-route-sortBy="DueDate" asp-route-sortDirection="@(ViewBag.SortDirection == "asc" ? "desc" : "asc")">
+                                Due Date
+                                @if (ViewBag.CurrentSortBy == "DueDate")
+                                {
+                                    <span>@(ViewBag.SortDirection == "asc" ? "↑" : "↓")</span>
+                                }
+                            </a>
+                        </th>
+                        <th>
+                            <a asp-action="Index" asp-route-sortBy="Status" asp-route-sortDirection="@(ViewBag.SortDirection == "asc" ? "desc" : "asc")">
+                                Status
+                                @if (ViewBag.CurrentSortBy == "Status")
+                                {
+                                    <span>@(ViewBag.SortDirection == "asc" ? "↑" : "↓")</span>
+                                }
+                            </a>
+                        </th>
                         <th class="w-25"></th>
                     </tr>
                 </thead>
+
 
                     <tbody>
                         @foreach(ToDo task in Model)

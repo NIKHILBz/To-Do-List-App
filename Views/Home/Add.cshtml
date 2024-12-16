@@ -17,10 +17,15 @@
         </select>
     </div>
 
-      <div class="mb-3">
-          <label asp-for="DueDate" class="form-label">Due Date:</label>
-          <input asp-for="DueDate" class="form-control" type="text"></input> //change type to date
-      </div>
+      <!-- <div class="mb-3">
+           <label asp-for="DueDate" class="form-label">Due Date:</label>
+           <input asp-for="DueDate" class="form-control" type="date"> //change type to date
+       </div>-->
+    <div class="mb-3">
+        <label asp-for="DueDate" class="form-label">Due Date:</label>
+        <input asp-for="DueDate" class="form-control" type="date">
+    </div>
+
 
     <div class="mb-3">
         <label asp-for="StatusId" class="form-label">Status:</label>

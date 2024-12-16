@@ -7,19 +7,13 @@ namespace To_Do_List_App.Controllers
 {
     public class HomeController : Controller
     {
-        //private readonly ILogger<HomeController> _logger;
-
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
-        //}
 
         private ToDoContext context;
         public HomeController(ToDoContext ctx) =>context = ctx;
 
-        public IActionResult Index(string id)
+        public IActionResult Index(string id, string sortBy, string sortDirection = "asc")
         {
-           var filters = new Filters(id);
+            var filters = new Filters(id);
             ViewBag.Filters = filters;
 
             ViewBag.Categories = context.Categories.ToList();
@@ -28,37 +22,42 @@ namespace To_Do_List_App.Controllers
 
             IQueryable<ToDo> query = context.ToDo.Include(t => t.Category).Include(t => t.Status);
 
+            // Apply filters
             if (filters.HasCategory)
-            {
                 query = query.Where(t => t.CategoryId == filters.CategoryId);
-            }
 
             if (filters.HasStatus)
-            {
                 query = query.Where(t => t.StatusId == filters.StatusId);
-
-            }
 
             if (filters.HasDue)
             {
-              var today = DateTime.Today;
+                var today = DateTime.Today;
                 if (filters.IsPast)
-                {
                     query = query.Where(t => t.DueDate < today);
-                }
                 else if (filters.IsFuture)
-                {
-                    query = query.Where(t => t.DueDate > today);    
-                }
+                    query = query.Where(t => t.DueDate > today);
                 else if (filters.IsToday)
-                {
-                    query= query.Where(t => t.DueDate == today);
-                }
-               
+                    query = query.Where(t => t.DueDate == today);
             }
-            var tasks = query.OrderBy(t => t.DueDate).ToList();
+
+            // Sorting logic
+            sortDirection = sortDirection.ToLower() == "desc" ? "desc" : "asc";
+            ViewBag.SortDirection = sortDirection;
+            ViewBag.CurrentSortBy = sortBy;
+
+            query = sortBy switch
+            {
+                "Category" => sortDirection == "asc" ? query.OrderBy(t => t.Category.Name) : query.OrderByDescending(t => t.Category.Name),
+                "DueDate" => sortDirection == "asc" ? query.OrderBy(t => t.DueDate) : query.OrderByDescending(t => t.DueDate),
+                "Status" => sortDirection == "asc" ? query.OrderBy(t => t.Status.Name) : query.OrderByDescending(t => t.Status.Name),
+                "Description" => sortDirection == "asc" ? query.OrderBy(t => t.Description) : query.OrderByDescending(t => t.Description),
+                _ => query.OrderBy(t => t.DueDate),
+            };
+
+            var tasks = query.ToList();
             return View(tasks);
         }
+
         [HttpGet]
 
         public IActionResult Add()
@@ -105,16 +104,7 @@ namespace To_Do_List_App.Controllers
             }
             return RedirectToAction("Index", new {Id = id});
         }
-        //public IActionResult Privacy()
-        //{
-        //    return View();
-        //}
 
-        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        //public IActionResult Error()
-        //{
-        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        //}
         [HttpPost]
         public IActionResult DeleteComplete(string id)
         {
@@ -127,5 +117,7 @@ namespace To_Do_List_App.Controllers
             context.SaveChanges();
             return RedirectToAction("Index", new {ID= id});
         }
+
+
     }
 }
