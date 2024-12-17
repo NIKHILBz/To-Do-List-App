@@ -25,10 +25,15 @@ namespace To_Do_List_App.Models
                  
                 );
 
+            //modelBuilder.Entity<Status>().HasData(
+            //    new Status { StatusId = "open", Name = "Open" },
+            //    new Status { StatusId = "closed", Name = "Completed" }
+            //    );
             modelBuilder.Entity<Status>().HasData(
-                new Status { StatusId = "open", Name = "Open" },
-                new Status { StatusId = "closed", Name = "Completed" }
-                );
+    new Status { StatusId = "open", Name = "Open" },
+    new Status { StatusId = "closed", Name = "Completed" }
+);
+
         }
     }
 }

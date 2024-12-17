@@ -117,5 +117,19 @@ namespace To_Do_List_App.Controllers
             context.SaveChanges();
             return RedirectToAction("Index", new {ID= id});
         }
+
+        [HttpPost]
+        public IActionResult MarkAsOpen(int Id)
+        {
+            var task = context.ToDo.Find(Id);
+            if (task != null)
+            {
+                task.StatusId = "open"; // Update the status to open
+                context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

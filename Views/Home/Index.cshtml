@@ -78,23 +78,36 @@
 
 
                     <tbody>
-                        @foreach(ToDo task in Model)
-                        {
-                            string overdue = task.Overdue ? "bg-warning" : "";
-                            <tr>
-                                <td>@task.Description</td>
-                                <td>@task.Category.Name</td>
-                                <td class="@overdue">@task.DueDate?.ToShortDateString()</td>
-                                <td class="@overdue">@task.Status.Name</td>
-                                <td>
-                                    @if(task.StatusId == "open")
-                                    {
-                                        <button type="submit" class="btn btn-primary btn-sm" 
-                                        name="@nameof(ToDo.Id)" value="@task.Id">Mark Completed</button>
-                                    }
-                                </td>
-                            </tr>
-                        }
+                    @foreach (ToDo task in Model)
+                    {
+                        string overdue = task.Overdue ? "bg-warning" : "";
+                        <tr>
+                            <td>@task.Description</td>
+                            <td>@task.Category.Name</td>
+                            <td class="@overdue">@task.DueDate?.ToShortDateString()</td>
+                            <td class="@overdue">@task.Status.Name</td>
+
+                            <td>
+                                @if (task.StatusId == "open")
+                                {
+                                    <form asp-action="MarkComplete" method="post">
+                                        <button type="submit" class="btn btn-primary btn-sm" name="@nameof(ToDo.Id)" value="@task.Id">
+                                            Mark Completed
+                                        </button>
+                                    </form>
+                                }
+                                else if (task.StatusId == "closed")
+                                {
+                                    <form asp-action="MarkAsOpen" method="post">
+                                        <button type="submit" class="btn btn-success btn-sm" name="@nameof(ToDo.Id)" value="@task.Id">
+                                            Mark as Open
+                                        </button>
+                                    </form>
+                                }
+                            </td>
+                        </tr>
+                    }
+
                     </tbody>
                 </table>
             </form>
